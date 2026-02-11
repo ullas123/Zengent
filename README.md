@@ -1,4 +1,4 @@
- # Code Lens - Data Imaging
+# Code Lens - Data Imaging
 
 A powerful Streamlit application for scanning source code repositories to identify legacy table and field references, with integrated data lineage visualization and interactive SQL diagrams.
 
@@ -163,17 +163,21 @@ The application will open in your browser at `http://localhost:5000`.
 
 ---
 
-## Dependencies
+## Technical Stack
 
-| Package | Purpose |
-|---------|---------|
-| `streamlit` | Web application framework |
-| `pandas` | Data manipulation and Excel reading |
-| `openpyxl` | Excel file parsing |
-| `networkx` | Graph construction for lineage |
-| `graphviz` | Static diagram rendering (lineage, workflow) |
-| `sqlparse` | SQL statement parsing |
-| Cytoscape.js (CDN) | Interactive SQL diagrams (loaded automatically) |
+| Layer | Technology | Version | Purpose |
+|-------|-----------|---------|---------|
+| **Language** | Python | 3.11+ | Core application language |
+| **Web Framework** | Streamlit | 1.53+ | Interactive web UI, widgets, layout, and session state |
+| **Data Processing** | Pandas | 2.3+ | DataFrames for scan results, filtering, and CSV export |
+| **Excel Parsing** | openpyxl | 3.1+ | Reading Excel mapping files (all sheets, multi-column) |
+| **Graph Engine** | NetworkX | 3.6+ | Building and traversing data lineage dependency graphs |
+| **Static Diagrams** | Graphviz (Python) | 0.21+ | Rendering lineage and workflow diagrams as DOT/SVG |
+| **Interactive Diagrams** | Cytoscape.js | 3.28 (CDN) | Interactive ETL, DFD, ERD, Query Dependency, and Control Flow diagrams |
+| **Graph Layout** | dagre.js | 0.8.5 (CDN) | Hierarchical directed-graph layout for Cytoscape.js diagrams |
+| **Network Visualization** | PyVis | 0.3+ | Interactive network graph rendering |
+| **SQL Parsing** | sqlparse | 0.5+ | Tokenizing and analyzing SQL/HQL statements for alias and lineage detection |
+| **Graphviz System** | Graphviz (system) | — | DOT engine required by the Python graphviz library for rendering |
 
 ---
 
