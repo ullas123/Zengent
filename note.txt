@@ -1,0 +1,1 @@
+SFTP inbound file → Airflow/Cloud Composer DAG → decrypt/parse file in Java → stage account numbers → fetch SSN + linked account numbers from 7 data sources → build output file in same format → encrypt output → send back to SFTP
