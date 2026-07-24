@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Code Lens – Installation Guide</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Arial, sans-serif; background: #f4f6f9; color: #222; }
+
+    header {
+      background: #1a1f36;
+      color: #fff;
+      padding: 32px 40px;
+    }
+    header h1 { font-size: 28px; margin-bottom: 6px; }
+    header p  { color: #9aa3be; font-size: 14px; }
+
+    .container { max-width: 860px; margin: 36px auto; padding: 0 20px 60px; }
+
+    /* Tech Stack */
+    .stack-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 14px;
+      margin: 20px 0 36px;
+    }
+    .stack-card {
+      background: #fff;
+      border: 1px solid #e0e4ef;
+      border-radius: 8px;
+      padding: 16px 14px;
+      text-align: center;
+    }
+    .stack-card .icon { font-size: 26px; }
+    .stack-card .name { font-weight: 700; font-size: 14px; margin: 6px 0 2px; }
+    .stack-card .desc { font-size: 12px; color: #666; }
+
+    /* OS tabs */
+    .tabs { display: flex; gap: 8px; margin-bottom: 20px; }
+    .tab-btn {
+      padding: 9px 22px;
+      border: 2px solid #1a1f36;
+      border-radius: 6px;
+      background: #fff;
+      color: #1a1f36;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background .2s, color .2s;
+    }
+    .tab-btn.active { background: #1a1f36; color: #fff; }
+
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+
+    /* Steps */
+    .step {
+      background: #fff;
+      border: 1px solid #e0e4ef;
+      border-radius: 8px;
+      padding: 18px 20px;
+      margin-bottom: 14px;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+    .step-num {
+      background: #1a1f36;
+      color: #fff;
+      border-radius: 50%;
+      min-width: 30px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 14px;
+    }
+    .step-body h3 { font-size: 15px; margin-bottom: 6px; }
+    .step-body p  { font-size: 13px; color: #555; margin-bottom: 8px; }
+
+    code, pre {
+      background: #f0f2f8;
+      border-radius: 5px;
+      font-family: monospace;
+      font-size: 13px;
+    }
+    code { padding: 2px 6px; }
+    pre  { padding: 12px 14px; overflow-x: auto; line-height: 1.6; }
+
+    .note {
+      background: #e8f4fd;
+      border-left: 4px solid #2196F3;
+      border-radius: 4px;
+      padding: 10px 14px;
+      font-size: 13px;
+      margin-top: 10px;
+      color: #1a5276;
+    }
+
+    h2 { font-size: 20px; margin-bottom: 14px; color: #1a1f36; }
+    .section { margin-bottom: 36px; }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>🔍 Code Lens – Data Imaging</h1>
+  <p>Installation Guide &nbsp;|&nbsp; Scan source code repositories for legacy table &amp; field references</p>
+</header>
+
+<div class="container">
+
+  <!-- Tech Stack -->
+  <div class="section">
+    <h2>Tech Stack</h2>
+    <div class="stack-grid">
+      <div class="stack-card">
+        <div class="icon">🐍</div>
+        <div class="name">Python 3.9+</div>
+        <div class="desc">Core language</div>
+      </div>
+      <div class="stack-card">
+        <div class="icon">⚡</div>
+        <div class="name">Streamlit</div>
+        <div class="desc">Web UI framework</div>
+      </div>
+      <div class="stack-card">
+        <div class="icon">🐼</div>
+        <div class="name">Pandas</div>
+        <div class="desc">Data processing</div>
+      </div>
+      <div class="stack-card">
+        <div class="icon">📊</div>
+        <div class="name">NetworkX</div>
+        <div class="desc">Lineage graphs</div>
+      </div>
+      <div class="stack-card">
+        <div class="icon">🗺️</div>
+        <div class="name">Graphviz</div>
+        <div class="desc">Diagram rendering</div>
+      </div>
+      <div class="stack-card">
+        <div class="icon">🗃️</div>
+        <div class="name">openpyxl</div>
+        <div class="desc">Excel file reading</div>
+      </div>
+      <div class="stack-card">
+        <div class="icon">🔍</div>
+        <div class="name">sqlparse</div>
+        <div class="desc">SQL parsing</div>
+      </div>
+      <div class="stack-card">
+        <div class="icon">🌐</div>
+        <div class="name">Cytoscape.js</div>
+        <div class="desc">Interactive diagrams (CDN)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- OS Tabs -->
+  <div class="section">
+    <h2>Installation Steps</h2>
+
+    <div class="tabs">
+      <button class="tab-btn active" onclick="switchTab('mac', this)">🍎 macOS</button>
+      <button class="tab-btn"        onclick="switchTab('win', this)">🪟 Windows</button>
+    </div>
+
+    <!-- macOS -->
+    <div id="mac" class="tab-content active">
+
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <h3>Install Python 3.9+</h3>
+          <p>Download from <strong>python.org/downloads</strong> or use Homebrew:</p>
+          <pre>brew install python</pre>
+          <p>Verify:</p>
+          <pre>python3 --version</pre>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <h3>Install Graphviz (system library)</h3>
+          <pre>brew install graphviz</pre>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <h3>Place the app files</h3>
+          <p>Unzip the downloaded <code>code_lens_Data.zip</code> into a folder, e.g. <code>~/code-lens/</code></p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <h3>Install Python packages</h3>
+          <pre>cd ~/code-lens
+pip3 install streamlit pandas openpyxl networkx graphviz sqlparse pyyaml</pre>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-body">
+          <h3>Run the app</h3>
+          <pre>streamlit run app.py --server.port 5000</pre>
+          <p>Then open <code>http://localhost:5000</code> in your browser.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Windows -->
+    <div id="win" class="tab-content">
+
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <h3>Install Python 3.9+</h3>
+          <p>Download from <strong>python.org/downloads</strong>. During install, check <strong>"Add Python to PATH"</strong>.</p>
+          <p>Verify in Command Prompt:</p>
+          <pre>python --version</pre>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <h3>Install Graphviz (system library)</h3>
+          <p>Option A – Winget:</p>
+          <pre>winget install graphviz</pre>
+          <p>Option B – download installer from <strong>graphviz.org/download</strong> and add to PATH.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <h3>Place the app files</h3>
+          <p>Unzip <code>code_lens_Data.zip</code> into a folder, e.g. <code>C:\code-lens\</code></p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <h3>Install Python packages</h3>
+          <p>Open Command Prompt, navigate to your folder:</p>
+          <pre>cd C:\code-lens
+pip install streamlit pandas openpyxl networkx graphviz sqlparse pyyaml</pre>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-body">
+          <h3>Run the app</h3>
+          <pre>streamlit run app.py --server.port 5000</pre>
+          <p>Then open <code>http://localhost:5000</code> in your browser.</p>
+        </div>
+      </div>
+
+      <div class="note">
+        💡 If <code>streamlit</code> is not recognised after install, try restarting Command Prompt or run via <code>python -m streamlit run app.py</code>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Quick start -->
+  <div class="section">
+    <h2>Quick Start</h2>
+    <div class="step">
+      <div class="step-num">→</div>
+      <div class="step-body">
+        <h3>Upload &amp; Scan</h3>
+        <p>1. Upload your <strong>Excel mapping file</strong> (legacy table names &amp; field names).<br>
+           2. Upload your <strong>source code ZIP</strong> (.py, .sql, .hql, .sh, etc.).<br>
+           3. Click <strong>Scan Repository</strong> and explore the results across tabs.</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  function switchTab(id, btn) {
+    document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    btn.classList.add('active');
+  }
+</script>
+
+</body>
+</html>

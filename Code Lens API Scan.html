@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Code Lens – Installation Guide</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f0f2f5; color: #333; line-height: 1.7; }
+    .container { max-width: 860px; margin: 40px auto; padding: 0 20px 60px; }
+
+    .header { background: linear-gradient(135deg, #1a1a2e, #0f3460); border-radius: 14px; padding: 36px 32px; text-align: center; margin-bottom: 32px; }
+    .header h1 { color: #e94560; font-size: 2rem; margin-bottom: 6px; }
+    .header p  { color: #a8b2d1; font-size: 1rem; }
+
+    .card { background: #fff; border-radius: 12px; padding: 28px 32px; margin-bottom: 24px; box-shadow: 0 2px 8px rgba(0,0,0,.07); }
+    .card h2 { font-size: 1.15rem; color: #0f3460; border-left: 4px solid #e94560; padding-left: 10px; margin-bottom: 18px; }
+
+    /* tech stack pills */
+    .stack { display: flex; flex-wrap: wrap; gap: 10px; }
+    .pill { display: flex; align-items: center; gap: 7px; background: #f0f4ff; border: 1px solid #d0d8f0; border-radius: 20px; padding: 6px 14px; font-size: 0.85rem; }
+    .pill span.icon { font-size: 1.1rem; }
+    .pill strong { color: #0f3460; }
+    .pill small { color: #6c757d; }
+
+    /* OS tabs */
+    .tabs { display: flex; gap: 8px; margin-bottom: 20px; }
+    .tab-btn { background: #f0f2f5; border: 2px solid #d0d8f0; border-radius: 8px; padding: 8px 22px; font-size: 0.9rem; font-weight: 600; cursor: pointer; color: #555; transition: all .2s; }
+    .tab-btn.active { background: #0f3460; color: #fff; border-color: #0f3460; }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    /* steps */
+    .steps { list-style: none; counter-reset: step; }
+    .steps li { counter-increment: step; display: flex; gap: 14px; margin-bottom: 14px; }
+    .steps li::before { content: counter(step); background: #e94560; color: #fff; border-radius: 50%; min-width: 26px; height: 26px; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 700; margin-top: 2px; flex-shrink: 0; }
+    .steps li .txt { flex: 1; }
+    .steps li .txt p { margin-bottom: 4px; font-size: 0.92rem; }
+
+    code { background: #1e2433; color: #7ec8e3; padding: 4px 10px; border-radius: 6px; font-size: 0.83rem; font-family: 'Courier New', monospace; display: inline-block; }
+    .block { background: #1e2433; border-radius: 8px; padding: 14px 18px; margin: 8px 0; }
+    .block code { background: none; padding: 0; display: block; line-height: 1.8; color: #abb2bf; }
+    .block code span { color: #e94560; }
+    .block code em   { color: #98c379; font-style: normal; }
+    .block code b    { color: #7ec8e3; font-weight: normal; }
+
+    .note { background: #fff8e1; border-left: 4px solid #ffc107; border-radius: 6px; padding: 10px 14px; font-size: 0.85rem; color: #5d4037; margin-top: 10px; }
+    .success { background: #e8f5e9; border-left: 4px solid #28a745; border-radius: 6px; padding: 10px 14px; font-size: 0.85rem; color: #1b5e20; margin-top: 14px; }
+
+    .footer { text-align: center; color: #aaa; font-size: 0.8rem; margin-top: 40px; }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Header -->
+  <div class="header">
+    <h1>Code Lens — API Scan</h1>
+    <p>Installation Guide &nbsp;·&nbsp; Mac &amp; Windows</p>
+  </div>
+
+  <!-- Tech Stack -->
+  <div class="card">
+    <h2>Tech Stack</h2>
+    <div class="stack">
+      <div class="pill"><span class="icon">🐍</span><div><strong>Python 3.9+</strong><small>Runtime</small></div></div>
+      <div class="pill"><span class="icon">⚡</span><div><strong>Streamlit</strong><small>Web UI</small></div></div>
+      <div class="pill"><span class="icon">📊</span><div><strong>Pandas + OpenPyXL</strong><small>Excel &amp; data tables</small></div></div>
+      <div class="pill"><span class="icon">🔷</span><div><strong>Graphviz</strong><small>API flow diagrams</small></div></div>
+      <div class="pill"><span class="icon">🔁</span><div><strong>Git</strong><small>Repo cloning</small></div></div>
+    </div>
+  </div>
+
+  <!-- Installation -->
+  <div class="card">
+    <h2>Installation Steps</h2>
+
+    <div class="tabs">
+      <button class="tab-btn active" onclick="switchTab('mac', this)">🍎 Mac</button>
+      <button class="tab-btn"        onclick="switchTab('win', this)">🪟 Windows</button>
+    </div>
+
+    <!-- MAC -->
+    <div id="tab-mac" class="tab-panel active">
+      <ol class="steps">
+
+        <li><div class="txt">
+          <p><strong>Install Python 3.9+</strong> (skip if already installed)</p>
+          <p>Download from <a href="https://www.python.org/downloads/" target="_blank">python.org</a> or use Homebrew:</p>
+          <div class="block"><code><span>brew</span> install python</code></div>
+        </div></li>
+
+        <li><div class="txt">
+          <p><strong>Install Graphviz</strong></p>
+          <div class="block"><code><span>brew</span> install graphviz</code></div>
+        </div></li>
+
+        <li><div class="txt">
+          <p><strong>Install Git</strong> (usually pre-installed on Mac)</p>
+          <div class="block"><code><span>git</span> --version</code></div>
+          <p style="font-size:0.82rem;color:#888;margin-top:4px;">If missing, run: <code>brew install git</code></p>
+        </div></li>
+
+        <li><div class="txt">
+          <p><strong>Unzip the project</strong> and open a terminal inside the folder</p>
+          <div class="block"><code><span>cd</span> code_lens</code></div>
+        </div></li>
+
+        <li><div class="txt">
+          <p><strong>Install Python packages</strong></p>
+          <div class="block">
+            <code><span>pip3</span> install -r requirements.txt</code>
+          </div>
+        </div></li>
+
+        <li><div class="txt">
+          <p><strong>Run the app</strong></p>
+          <div class="block">
+            <code><span>streamlit</span> run app.py <em>--server.port 5000</em></code>
+          </div>
+          <div class="success">✅ Browser opens automatically at <strong>http://localhost:5000</strong></div>
+          <div class="note">💡 Or just double-click <strong>start.sh</strong> from Finder.</div>
+        </div></li>
+
+      </ol>
+    </div>
+
+    <!-- WINDOWS -->
+    <div id="tab-win" class="tab-panel">
+      <ol class="steps">
+
+        <li><div class="txt">
+          <p><strong>Install Python 3.9+</strong></p>
+          <p>Download from <a href="https://www.python.org/downloads/" target="_blank">python.org</a>.</p>
+          <div class="note">⚠️ During install, check <strong>"Add Python to PATH"</strong> before clicking Install.</div>
+        </div></li>
+
+        <li><div class="txt">
+          <p><strong>Install Graphviz</strong></p>
+          <p>Download the installer from <a href="https://graphviz.org/download/" target="_blank">graphviz.org</a>.</p>
+          <div class="note">⚠️ During install, select <strong>"Add Graphviz to system PATH"</strong>.</div>
+        </div></li>
+
+        <li><div class="txt">
+          <p><strong>Install Git</strong></p>
+          <p>Download from <a href="https://git-scm.com/download/win" target="_blank">git-scm.com</a> and install with defaults.</p>
+        </div></li>
+
+        <li><div class="txt">
+          <p><strong>Unzip the project</strong>, then open <strong>Command Prompt</strong> inside the folder:</p>
+          <div class="block"><code><b>cd</b> code_lens</code></div>
+        </div></li>
+
+        <li><div class="txt">
+          <p><strong>Install Python packages</strong></p>
+          <div class="block"><code><b>pip</b> install -r requirements.txt</code></div>
+        </div></li>
+
+        <li><div class="txt">
+          <p><strong>Run the app</strong></p>
+          <div class="block"><code><b>streamlit</b> run app.py <em>--server.port 5000</em></code></div>
+          <div class="success">✅ Browser opens automatically at <strong>http://localhost:5000</strong></div>
+          <div class="note">💡 Or just double-click <strong>start.bat</strong> in the project folder.</div>
+        </div></li>
+
+      </ol>
+    </div>
+  </div>
+
+  <!-- Quick Reference -->
+  <div class="card">
+    <h2>Quick Reference</h2>
+    <table style="width:100%;font-size:0.88rem;border-collapse:collapse;">
+      <thead>
+        <tr style="background:#0f3460;color:#fff;">
+          <th style="padding:9px 12px;text-align:left;border-radius:6px 0 0 0">Item</th>
+          <th style="padding:9px 12px;text-align:left">Mac</th>
+          <th style="padding:9px 12px;text-align:left;border-radius:0 6px 0 0">Windows</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="background:#f8f9fa"><td style="padding:8px 12px">Python install</td><td><code style="font-size:0.78rem">brew install python</code></td><td>python.org installer</td></tr>
+        <tr><td style="padding:8px 12px">Graphviz install</td><td><code style="font-size:0.78rem">brew install graphviz</code></td><td>graphviz.org installer</td></tr>
+        <tr style="background:#f8f9fa"><td style="padding:8px 12px">Install packages</td><td><code style="font-size:0.78rem">pip3 install -r requirements.txt</code></td><td><code style="font-size:0.78rem">pip install -r requirements.txt</code></td></tr>
+        <tr><td style="padding:8px 12px">Start app</td><td><code style="font-size:0.78rem">./start.sh</code></td><td>double-click <code style="font-size:0.78rem">start.bat</code></td></tr>
+        <tr style="background:#f8f9fa"><td style="padding:8px 12px">App URL</td><td colspan="2"><code style="font-size:0.78rem">http://localhost:5000</code></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="footer">Code Lens – API Scan &nbsp;·&nbsp; Installation Guide</div>
+</div>
+
+<script>
+  function switchTab(id, btn) {
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + id).classList.add('active');
+    btn.classList.add('active');
+  }
+</script>
+</body>
+</html>

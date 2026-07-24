@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Code Lens Ver 1 — Installation Guide</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Arial, sans-serif; background: #f4f7fb; color: #222; }
+
+  header {
+    background: linear-gradient(135deg, #0066cc 0%, #0044aa 100%);
+    color: white; padding: 36px 40px;
+  }
+  header h1 { font-size: 1.8rem; margin-bottom: 6px; }
+  header p  { font-size: 0.95rem; opacity: 0.85; }
+  .badge {
+    display: inline-block; background: rgba(255,255,255,0.18);
+    border-radius: 20px; padding: 3px 14px; font-size: 0.8rem;
+    margin-top: 10px; letter-spacing: 0.5px;
+  }
+
+  .container { max-width: 960px; margin: 0 auto; padding: 36px 24px; }
+
+  /* ── Tech Stack ── */
+  .stack-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 14px; margin-bottom: 40px;
+  }
+  .stack-card {
+    background: white; border-radius: 10px; padding: 18px 16px;
+    border-top: 4px solid #0066cc;
+    box-shadow: 0 2px 8px rgba(0,0,0,.07);
+  }
+  .stack-card .icon { font-size: 1.6rem; margin-bottom: 8px; }
+  .stack-card h4   { color: #0066cc; font-size: 0.95rem; margin-bottom: 4px; }
+  .stack-card p    { font-size: 0.80rem; color: #555; line-height: 1.4; }
+
+  /* ── Section headings ── */
+  h2 {
+    font-size: 1.15rem; color: #0066cc;
+    border-left: 5px solid #0066cc; padding-left: 12px;
+    margin: 36px 0 18px;
+  }
+
+  /* ── OS tabs ── */
+  .tabs { display: flex; gap: 0; margin-bottom: 0; }
+  .tab-btn {
+    padding: 10px 28px; cursor: pointer; font-size: 0.92rem; font-weight: 600;
+    border: 2px solid #0066cc; background: white; color: #0066cc;
+    border-bottom: none; border-radius: 8px 8px 0 0; transition: 0.2s;
+  }
+  .tab-btn.active, .tab-btn:hover { background: #0066cc; color: white; }
+  .tab-btn:first-child { margin-right: 4px; }
+
+  .tab-content {
+    display: none; background: white; border: 2px solid #0066cc;
+    border-radius: 0 8px 8px 8px; padding: 28px;
+    box-shadow: 0 3px 10px rgba(0,0,0,.07);
+  }
+  .tab-content.active { display: block; }
+
+  /* ── Steps ── */
+  .step {
+    display: flex; gap: 16px; align-items: flex-start;
+    margin-bottom: 20px; padding-bottom: 20px;
+    border-bottom: 1px dashed #dde6f5;
+  }
+  .step:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+  .step-num {
+    min-width: 34px; height: 34px; border-radius: 50%;
+    background: #0066cc; color: white; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.9rem; flex-shrink: 0;
+  }
+  .step-body h4  { font-size: 0.95rem; color: #0066cc; margin-bottom: 6px; }
+  .step-body p   { font-size: 0.85rem; color: #444; margin-bottom: 8px; line-height: 1.5; }
+  code {
+    display: block; background: #f0f4fa;
+    border-left: 4px solid #0066cc; padding: 10px 14px;
+    font-family: monospace; font-size: 0.85rem;
+    border-radius: 4px; color: #1a1a2e; white-space: pre;
+  }
+  .note {
+    background: #e8f3ff; border-radius: 6px; padding: 10px 14px;
+    font-size: 0.82rem; color: #0055aa; margin-top: 8px;
+  }
+  .note strong { color: #0066cc; }
+
+  /* ── Requirements pill list ── */
+  .pills { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
+  .pill {
+    background: #eef4ff; border: 1px solid #b3d0ff;
+    border-radius: 20px; padding: 4px 14px;
+    font-size: 0.82rem; color: #0055aa; font-weight: 600;
+  }
+
+  /* ── Footer ── */
+  footer {
+    text-align: center; padding: 24px;
+    font-size: 0.8rem; color: #888;
+    border-top: 1px solid #dde6f5; margin-top: 40px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>🔍 Code Lens Ver 1</h1>
+  <p>Code Analysis Utility — Demographic Scan</p>
+  <div class="badge">Built by Zensar Project Diamond Team</div>
+</header>
+
+<div class="container">
+
+  <!-- Tech Stack -->
+  <h2>🛠 Tech Stack</h2>
+  <div class="stack-grid">
+    <div class="stack-card">
+      <div class="icon">🖥️</div>
+      <h4>Streamlit</h4>
+      <p>Web UI framework — all pages, sidebar &amp; file uploads</p>
+    </div>
+    <div class="stack-card">
+      <div class="icon">📊</div>
+      <h4>Plotly</h4>
+      <p>Interactive charts — pie, bar, treemap, line &amp; donut</p>
+    </div>
+    <div class="stack-card">
+      <div class="icon">🐍</div>
+      <h4>Python 3.11+</h4>
+      <p>Core language for all scanning and analysis logic</p>
+    </div>
+    <div class="stack-card">
+      <div class="icon">🤖</div>
+      <h4>FuzzyWuzzy</h4>
+      <p>Traditional ML fuzzy matching for Excel demographic fields</p>
+    </div>
+    <div class="stack-card">
+      <div class="icon">🔍</div>
+      <h4>Pygments</h4>
+      <p>Language detection &amp; code syntax highlighting</p>
+    </div>
+    <div class="stack-card">
+      <div class="icon">📋</div>
+      <h4>pandas + openpyxl</h4>
+      <p>Excel file reading, writing and data analysis</p>
+    </div>
+    <div class="stack-card">
+      <div class="icon">📈</div>
+      <h4>Chart.js</h4>
+      <p>Charts embedded in the downloadable HTML report</p>
+    </div>
+    <div class="stack-card">
+      <div class="icon">⚡</div>
+      <h4>python-Levenshtein</h4>
+      <p>String edit-distance — speeds up fuzzy matching 4–10x</p>
+    </div>
+  </div>
+
+  <!-- Prerequisites -->
+  <h2>✅ Prerequisites</h2>
+  <div class="pills">
+    <span class="pill">Python 3.11+</span>
+    <span class="pill">pip</span>
+    <span class="pill">Web Browser (Chrome / Edge / Firefox)</span>
+    <span class="pill">Internet connection (first run only)</span>
+  </div>
+
+  <!-- OS Tabs -->
+  <h2>💻 Installation Steps</h2>
+
+  <div class="tabs">
+    <button class="tab-btn active" onclick="showTab('mac', this)">🍎 macOS</button>
+    <button class="tab-btn"       onclick="showTab('win', this)">🪟 Windows</button>
+  </div>
+
+  <!-- macOS -->
+  <div id="mac" class="tab-content active">
+
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <h4>Check Python version</h4>
+        <p>Open <strong>Terminal</strong> and confirm Python 3.11+ is installed:</p>
+        <code>python3 --version</code>
+        <div class="note"><strong>Tip:</strong> If not installed, download from <a href="https://www.python.org/downloads/" target="_blank">python.org</a> or use Homebrew: <code style="display:inline;border:none;background:none;padding:0">brew install python</code></div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <h4>Extract the project files</h4>
+        <p>Unzip <strong>CodeLens_Ver1.zip</strong> to a folder, then navigate into it:</p>
+        <code>cd ~/Downloads/CodeLens</code>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <h4>Install dependencies</h4>
+        <code>pip3 install -r requirements.txt</code>
+        <div class="note"><strong>One-time step.</strong> Installs Streamlit, Plotly, pandas, FuzzyWuzzy and all other libraries.</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-body">
+        <h4>Run the app</h4>
+        <p>Option A — use the launch script:</p>
+        <code>bash run.sh</code>
+        <p style="margin-top:10px">Option B — run directly:</p>
+        <code>streamlit run app.py --server.port 5000</code>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">5</div>
+      <div class="step-body">
+        <h4>Open in browser</h4>
+        <p>Navigate to:</p>
+        <code>http://localhost:5000</code>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Windows -->
+  <div id="win" class="tab-content">
+
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <h4>Check Python version</h4>
+        <p>Open <strong>Command Prompt</strong> or <strong>PowerShell</strong> and run:</p>
+        <code>python --version</code>
+        <div class="note"><strong>Tip:</strong> If not installed, download from <a href="https://www.python.org/downloads/" target="_blank">python.org</a>. During install, check <strong>"Add Python to PATH"</strong>.</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <h4>Extract the project files</h4>
+        <p>Unzip <strong>CodeLens_Ver1.zip</strong> to a folder, then open a Command Prompt in that folder:</p>
+        <code>cd C:\Users\YourName\Downloads\CodeLens</code>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <h4>Install dependencies</h4>
+        <code>pip install -r requirements.txt</code>
+        <div class="note"><strong>One-time step.</strong> Installs Streamlit, Plotly, pandas, FuzzyWuzzy and all other libraries.</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-body">
+        <h4>Run the app</h4>
+        <p>Option A — double-click <strong>run.bat</strong> in the project folder.</p>
+        <p style="margin-top:10px">Option B — run from Command Prompt:</p>
+        <code>streamlit run app.py --server.port 5000</code>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">5</div>
+      <div class="step-body">
+        <h4>Open in browser</h4>
+        <p>The browser should open automatically. If not, navigate to:</p>
+        <code>http://localhost:5000</code>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<footer>
+  Code Lens Ver 1 &nbsp;|&nbsp; Zensar Project Diamond Team &nbsp;|&nbsp; 2026
+</footer>
+
+<script>
+  function showTab(id, btn) {
+    document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    btn.classList.add('active');
+  }
+</script>
+
+</body>
+</html>
